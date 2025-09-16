@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Recrutement</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Rejoins la fédération !</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="roster.html">Roster</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <form action="https://formsubmit.co/ton@email.com" method="POST">
+      <label>Nom de scène :</label>
+      <input type="text" name="nom" required>
+
+      <label>Email :</label>
+      <input type="email" name="email" required>
+
+      <label>Style de combat :</label>
+      <input type="text" name="style" required>
+
+      <label>Décris ton personnage :</label>
+      <textarea name="description" required></textarea>
+
+      <button type="submit">Envoyer la candidature</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Catch Universe</p>
+  </footer>
+</body>
+</html>
