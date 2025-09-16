@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Roster</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/scripts.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Roster des Catcheurs</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="roster.html">Roster</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="roster">
+      <div class="wrestler-card" onclick="openPopup('dragonfire')">
+        <img src="images/catcheurs/dragonfire.jpg" alt="Dragonfire">
+        <h3>Dragonfire</h3>
+        <video src="videos/dragonfire-finisher.mp4" controls></video>
+      </div>
+
+      <!-- Pop-up -->
+      <div id="popup-dragonfire" class="popup">
+        <div class="popup-content">
+          <span class="close" onclick="closePopup('dragonfire')">&times;</span>
+          <img src="images/catcheurs/dragonfire.jpg" alt="Dragonfire">
+          <h2>Dragonfire</h2>
+          <p>Un catcheur mystique avec un style aérien et explosif. Finisher : Fire Bomb</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Catch Universe</p>
+  </footer>
+</body>
+</html>
