@@ -14,7 +14,7 @@ body {
 
 /* Header */
 header {
-  background-color: #4B0082; /* Violet foncé */
+  background-color: #4B0082; /* Violet */
   color: white;
   padding: 15px 40px;
   display: flex;
@@ -27,6 +27,7 @@ header h1 {
   font-size: 24px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: white; /* Garde le titre en blanc */
 }
 
 nav ul {
@@ -44,7 +45,7 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: #ff4081; /* Accent rose */
+  color: #ff4081; /* Accent rose si tu veux un effet au survol */
 }
 
 /* Main */
@@ -67,7 +68,7 @@ main p {
   margin-bottom: 30px;
 }
 
-/* Cartes / blocs */
+/* Cartes */
 .card-container {
   display: flex;
   justify-content: center;
@@ -105,7 +106,7 @@ main p {
 
 /* Footer */
 footer {
-  background-color: #4B0082;
+  background-color: #4B0082; /* Violet comme demandé */
   color: white;
   text-align: center;
   padding: 15px 0;
