@@ -14,8 +14,8 @@ body {
 
 /* Header */
 header {
-  background-color: red;
-  color: purple;
+  background-color: #4B0082; /* Violet foncé */
+  color: white;
   padding: 15px 40px;
   display: flex;
   align-items: center;
@@ -38,13 +38,13 @@ nav ul {
 nav ul li a {
   color: white;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: #ff3c3c; /* Rouge vif */
+  color: #ff4081; /* Accent rose */
 }
 
 /* Main */
@@ -56,143 +56,80 @@ main {
 }
 
 main h2 {
-  font-size: 32px;
-  margin-bottom: 15px;
-  color: #222;
+  font-size: 28px;
+  color: #4B0082;
+  margin-bottom: 20px;
 }
 
 main p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+/* Cartes / blocs */
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #eee;
+  border: 3px solid #4B0082;
+  border-radius: 12px;
+  width: 280px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin-top: 15px;
   font-size: 18px;
-  color: #555;
+  color: #4B0082;
 }
 
 /* Footer */
 footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #111;
+  background-color: #4B0082;
   color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 40px;
   font-size: 14px;
-  margin-top: 60px;
 }
 
-/* Responsive Menu */
+/* Responsive */
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
   header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
   }
-}
 
-/* Styles spécifiques pour la collection */
-.collection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 30px;
-  margin-top: 30px;
-}
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
 
-.collection-item {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 8px;
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.collection-item:hover {
-  box-shadow: 0 4px 12px rgba(255, 60, 60, 0.4);
-}
-
-.collection-item img {
-  max-width: 100%;
-  border-radius: 5px;
-}
-
-.collection-item h3 {
-  margin-top: 12px;
-  font-size: 20px;
-  color: #222;
-}
-
-/* Styles pour le roster */
-.roster-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.roster-item {
-  width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  background: #fafafa;
-}
-
-.roster-item:hover {
-  box-shadow: 0 5px 15px rgba(255, 60, 60, 0.5);
-}
-
-.roster-item img {
-  width: 100%;
-  height: auto;
-}
-
-.roster-item h4 {
-  padding: 10px;
-  font-size: 18px;
-  color: #222;
-}
-
-/* Styles pour recrutement */
-.recrutement-form {
-  max-width: 500px;
-  margin: 30px auto;
-  text-align: left;
-}
-
-.recrutement-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #222;
-}
-
-.recrutement-form input,
-.recrutement-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  resize: vertical;
-}
-
-.recrutement-form button {
-  background-color: #ff3c3c;
-  border: none;
-  color: white;
-  padding: 12px 25px;
-  font-size: 18px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.recrutement-form button:hover {
-  background-color: #cc3030;
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 
