@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Collection de Cartes</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Collection de Cartes</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="roster.html">Roster</a></li>
+        <li><a href="recrutement.html">Recrutement</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="gallery">
+      <div class="card">
+        <img src="images/cartes/dragonfire-card.jpg" alt="Carte Dragonfire">
+        <p>Dragonfire</p>
+      </div>
+      <div class="card">
+        <img src="images/cartes/shadowstrike-card.jpg" alt="Carte Shadowstrike">
+        <p>Shadowstrike</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Catch Universe</p>
+  </footer>
+</body>
+</html>
