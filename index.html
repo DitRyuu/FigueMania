@@ -2,36 +2,39 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Collection - FigueMania</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FigueMania</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>FigueMania</h1>
+    <a href="index.html" class="logo">
+      <img src="images/cbcee857-7c23-47b0-baa5-73414d47ad2c.png" alt="FigueMania Logo" />
+    </a>
     <nav>
       <ul>
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="collection.html" class="active">Collection</a></li>
-        <li><a href="roster.html">Roster</a></li>
-        <li><a href="recrutement.html">Recrutement</a></li>
+        <li><a href="#" class="active">Accueil</a></li>
+        <li><a href="#">Collection</a></li>
+        <li><a href="#">Roster</a></li>
+        <li><a href="#">Recrutement</a></li>
       </ul>
     </nav>
   </header>
+
   <main>
     <h2>Collection de cartes catcheurs</h2>
-    <div class="collection-grid">
-      <!-- Exemple d’items -->
-      <div class="collection-item">
-        <img src="https://via.placeholder.com/250x350?text=Carte+1" alt="Carte 1" />
+    <section class="cards">
+      <article class="card">
+        <img src="images/carte1.png" alt="Carte 1" />
         <h3>Catcheur 1</h3>
-      </div>
-      <div class="collection-item">
-        <img src="https://via.placeholder.com/250x350?text=Carte+2" alt="Carte 2" />
+      </article>
+      <article class="card">
+        <img src="images/carte2.png" alt="Carte 2" />
         <h3>Catcheur 2</h3>
-      </div>
-      <!-- Ajoute plus d’items ici -->
-    </div>
+      </article>
+    </section>
   </main>
+
   <footer>
     <p>© 2025 FigueMania</p>
   </footer>
