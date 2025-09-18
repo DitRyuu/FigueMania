@@ -20,6 +20,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    position: fixed;   /* Fixe la barre */
+    bottom: 0;         /* La colle en bas */
+    left: 0;
+    width: 100%;       /* Elle prend toute la largeur */
+    z-index: 1000;     /* Reste au-dessus du contenu */
 }
 
 .logo img {
