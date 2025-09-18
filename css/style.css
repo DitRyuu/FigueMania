@@ -140,7 +140,7 @@ footer {
 }
 
 collection-page {
-  background-image: url('../images/backgrounds/carte-bg.jpg'); /* ou une couleur */
+  background-image: url('../images/backgroundcollection.png'); /* ou une couleur */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
