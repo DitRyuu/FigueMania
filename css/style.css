@@ -139,3 +139,11 @@ footer {
     nav ul { gap: 12px; font-size: 14px; }
 }
 
+#collection-page {
+  background-image: url('../images/backgrounds/carte-bg.jpg'); /* ou une couleur */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
