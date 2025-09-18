@@ -139,7 +139,7 @@ footer {
     nav ul { gap: 12px; font-size: 14px; }
 }
 
-collection-page {
+#collection-page {
   background-image: src('images/backgroundcollection.png'); /* ou une couleur */
   background-size: cover;
   background-repeat: no-repeat;
