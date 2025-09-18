@@ -5,37 +5,54 @@
     box-sizing: border-box;
 }
 
+/* Variables de taille pour header/footer */
+:root {
+    --header-height: 80px; /* ajuste si besoin */
+    --footer-height: 60px; /* ajuste si besoin */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    /* Chemin relatif depuis css/style.css vers images/ */
     background: url('../images/background.png') no-repeat center center fixed;
     background-size: cover;
     color: #333;
+
+    /* espace pour que le contenu ne soit pas caché par header/footer fixes */
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
 }
 
-/* Barre violette en bas */
+/* Header en haut (fixé) */
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
     background-color: #4B0082;
     color: white;
-    padding: 15px 30px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
-    position: fixed;   /* fixée */
-    bottom: 0;         /* en bas */
-    left: 0;
-    width: 100%;       /* largeur totale */
-    z-index: 1000;     /* au-dessus du contenu */
+    justify-content: space-between;
+    padding: 10px 30px;
+    z-index: 1000;
 }
+
+/* Si tu préfères que le header ne soit PAS fixé (simple en-tête), 
+   remplace 'position: fixed;' par 'position: static;' et supprime le padding-top sur body. */
 
 .logo img {
-    height: 60px; /* Taille du logo */
+    height: 60px;
 }
 
+/* Navigation */
 nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 nav ul li a {
@@ -54,7 +71,7 @@ nav ul li a.active {
 main {
     text-align: center;
     padding: 40px 20px;
-    margin-bottom: 100px; /* espace pour la barre violette */
+    /* plus besoin de margin-bottom ici car body a déjà padding-bottom */
 }
 
 main h2 {
@@ -71,7 +88,7 @@ main h2 {
 }
 
 .card {
-    background-color: white;
+    background-color: rgba(255,255,255,0.95); /* léger effet sur fond image */
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -94,12 +111,31 @@ main h2 {
     color: #4B0082;
 }
 
-/* Pied de page */
+/* Footer fixe en bas (barre contenant le ©) */
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--footer-height);
     background-color: #4B0082;
     color: white;
-    text-align: center;
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* texte centré */
+    z-index: 900;
+    padding: 0 20px;
     font-size: 14px;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+}
+
+/* Responsive : réduire la hauteur du header sur petits écrans */
+@media (max-width: 600px) {
+    :root {
+        --header-height: 70px;
+        --footer-height: 56px;
+    }
+    .logo img { height: 48px; }
+    nav ul { gap: 12px; font-size: 14px; }
 }
 
