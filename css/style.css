@@ -140,7 +140,7 @@ footer {
 }
 
 #collection-page {
-  background-image: src('images/backgroundcollection.png'); /* ou une couleur */
+  background-image: src('../images/backgroundcollection.png'); /* ou une couleur */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
