@@ -1,37 +1,58 @@
-/* Reset de base */
+/* ==================== */
+/* 🔄 Reset de base */
+/* ==================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Variables de taille pour header/footer */
+/* ==================== */
+/* 🎨 Variables CSS */
+/* ==================== */
 :root {
-    --header-height: 80px; /* ajuste si besoin */
-    --footer-height: 60px; /* ajuste si besoin */
+    --header-height: 80px;
+    --footer-height: 60px;
+    --primary-color: #4B0082;
+    --text-color: #333;
 }
 
+/* ==================== */
+/* 🌐 Style général */
+/* ==================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh;
-    /* Chemin relatif depuis css/style.css vers images/ */
+
+    /* 🌄 Fond par défaut pour toutes les pages */
     background: url('../images/background.png') no-repeat center center fixed;
     background-size: cover;
-    color: #333;
+    color: var(--text-color);
 
-    /* espace pour que le contenu ne soit pas caché par header/footer fixes */
+    /* 🧱 Laisse de la place au header/footer fixes */
     padding-top: var(--header-height);
     padding-bottom: var(--footer-height);
 }
 
-/* Header en haut (fixé) */
+/* ==================== */
+/* 📄 Fond spécifique pour la page "Collection" */
+/* ==================== */
+#collection-page {
+    background: url('../images/backgroundcollection.png') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ==================== */
+/* 📌 Header (fixé en haut) */
+/* ==================== */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background-color: #4B0082;
+    background-color: var(--primary-color);
     color: white;
     display: flex;
     align-items: center;
@@ -40,14 +61,14 @@ header {
     z-index: 1000;
 }
 
-/* Si tu préfères que le header ne soit PAS fixé (simple en-tête), 
-   remplace 'position: fixed;' par 'position: static;' et supprime le padding-top sur body. */
-
+/* 🖼️ Logo dans le header */
 .logo img {
     height: 60px;
 }
 
-/* Navigation */
+/* ==================== */
+/* 🧭 Navigation */
+/* ==================== */
 nav ul {
     list-style: none;
     display: flex;
@@ -67,20 +88,24 @@ nav ul li a.active {
     color: #ffccff;
 }
 
-/* Main */
+/* ==================== */
+/* 🧱 Main */
+/* ==================== */
 main {
     text-align: center;
     padding: 40px 20px;
-    /* plus besoin de margin-bottom ici car body a déjà padding-bottom */
 }
 
+/* Titres */
 main h2 {
     margin-bottom: 30px;
-    color: #4B0082;
+    color: var(--primary-color);
 }
 
-/* Cartes */
-.cards {
+/* ==================== */
+/* 🃏 Cartes */
+/* ==================== */
+.gallery {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -88,7 +113,7 @@ main h2 {
 }
 
 .card {
-    background-color: rgba(255,255,255,0.95); /* léger effet sur fond image */
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -107,43 +132,54 @@ main h2 {
     margin-bottom: 10px;
 }
 
-.card h3 {
-    color: #4B0082;
+.card p {
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
-/* Footer fixe en bas (barre contenant le ©) */
+/* ==================== */
+/* 🦶 Footer (fixé en bas) */
+/* ==================== */
 footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: var(--footer-height);
-    background-color: #4B0082;
+    background-color: var(--primary-color);
     color: white;
     display: flex;
     align-items: center;
-    justify-content: center; /* texte centré */
+    justify-content: center;
     z-index: 900;
     padding: 0 20px;
     font-size: 14px;
-    box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive : réduire la hauteur du header sur petits écrans */
+/* ==================== */
+/* 📱 Responsive Design */
+/* ==================== */
 @media (max-width: 600px) {
     :root {
         --header-height: 70px;
         --footer-height: 56px;
     }
-    .logo img { height: 48px; }
-    nav ul { gap: 12px; font-size: 14px; }
+
+    .logo img {
+        height: 48px;
+    }
+
+    nav ul {
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    main {
+        padding: 30px 15px;
+    }
+
+    .card {
+        width: 90%;
+    }
 }
-
-#collection-page {
-  background-image: src('../images/backgroundcollection.png'); /* ou une couleur */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-
