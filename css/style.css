@@ -76,8 +76,11 @@ header {
   z-index: 1000;
 }
 
-header h1 {
-  font-size: 22px;
+/* ✅ Logo réduit */
+.logo img {
+  height: 40px;   /* taille du logo */
+  width: auto;    /* garde proportions */
+  display: block;
 }
 
 nav ul {
@@ -193,8 +196,8 @@ footer {
     --footer-height: 56px;
   }
 
-  header h1 {
-    font-size: 18px;
+  .logo img {
+    height: 30px; /* logo encore plus petit sur mobile */
   }
 
   nav ul {
