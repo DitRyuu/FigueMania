@@ -1,194 +1,182 @@
-/* ==================== */
-/* 🔄 Reset de base */
-/* ==================== */
+/* ========== 🔄 Reset de base ========== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ==================== */
-/* 🎨 Variables CSS */
-/* ==================== */
+/* ========== 🎨 Variables CSS ========== */
 :root {
-    --header-height: 80px;
-    --footer-height: 60px;
-    --primary-color: #4B0082;
-    --text-color: #333;
+  --header-height: 80px;
+  --footer-height: 60px;
+  --primary-color: #4d004d;
+  --text-color: #333;
 }
 
-/* ==================== */
-/* 🌐 Style général */
-/* ==================== */
+/* ========== 🌐 Style général ========== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-
-    /* 🌄 Fond par défaut pour toutes les pages */
-    background: url('../images/background.png') no-repeat center center fixed;
-    background-size: cover;
-    color: var(--text-color);
-
-    /* 🧱 Laisse de la place au header/footer fixes */
-    padding-top: var(--header-height);
-    padding-bottom: var(--footer-height);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  color: var(--text-color);
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
 }
 
-/* ==================== */
-/* 📄 Fond spécifique pour la page "Collection" */
-/* ==================== */
+/* ========== 📄 Fonds spécifiques par page ========== */
+
+/* Accueil par défaut (aucun ID nécessaire) */
+body {
+  background: url('../images/background.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Collection */
 #collection-page {
-    background: url('../images/9f738a60-8205-4438-8f57-6f983da65240.png') no-repeat center center fixed;
-    background-size: cover;
-    background-position: center;
+  background: url('../images/9f738a60-8205-4438-8f57-6f983da65240.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
 }
-/* ==================== */
-/* 📄 Fond spécifique pour la page "Roster" */
-/* ==================== */
+
+/* Roster */
 #roster-page {
-    background: url('../images/backgroundroster.png') no-repeat center center fixed;
-    background-size: cover;
-    background-position: center;
+  background: url('../images/backgroundroster.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
 }
 
+/* Recrutement (exemple, si tu veux le rajouter) */
+#recrutement-page {
+  background: url('../images/backgroundrecrutement.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
 
-/* ==================== */
-/* 📌 Header (fixé en haut) */
-/* ==================== */
+/* Résultats (exemple, si tu veux le rajouter) */
+#resultats-page {
+  background: url('../images/backgroundresultats.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ========== 📌 Header ========== */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--header-height);
-    background-color: var(--primary-color);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 30px;
-    z-index: 1000;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
 }
 
-/* 🖼️ Logo dans le header */
-.logo img {
-    height: 60px;
+header h1 {
+  font-size: 22px;
 }
 
-/* ==================== */
-/* 🧭 Navigation */
-/* ==================== */
 nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-    color: #ffccff;
+  color: #ffccff;
 }
 
-/* ==================== */
-/* 🧱 Main */
-/* ==================== */
+/* ========== 🧱 Roster ========== */
 main {
-    text-align: center;
-    padding: 40px 20px;
+  padding: 100px 20px 60px;
 }
 
-/* Titres */
-main h2 {
-    margin-bottom: 30px;
-    color: var(--primary-color);
+.roster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-/* ==================== */
-/* 🃏 Cartes */
-/* ==================== */
-.gallery {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+.catcheur {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s;
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    width: 220px;
-    transition: transform 0.2s;
+.catcheur:hover {
+  transform: scale(1.05);
 }
 
-.card:hover {
-    transform: scale(1.05);
+.catcheur img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.catcheur h3 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+  color: white;
 }
 
-.card p {
-    font-weight: bold;
-    color: var(--primary-color);
+.catcheur p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #ccc;
 }
 
-/* ==================== */
-/* 🦶 Footer (fixé en bas) */
-/* ==================== */
+/* ========== 🦶 Footer ========== */
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: var(--footer-height);
-    background-color: var(--primary-color);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 900;
-    padding: 0 20px;
-    font-size: 14px;
-    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--footer-height);
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  font-size: 14px;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* ==================== */
-/* 📱 Responsive Design */
-/* ==================== */
+/* ========== 📱 Responsive Design ========== */
 @media (max-width: 600px) {
-    :root {
-        --header-height: 70px;
-        --footer-height: 56px;
-    }
+  :root {
+    --header-height: 70px;
+    --footer-height: 56px;
+  }
 
-    .logo img {
-        height: 48px;
-    }
+  header h1 {
+    font-size: 18px;
+  }
 
-    nav ul {
-        gap: 12px;
-        font-size: 14px;
-    }
+  nav ul {
+    gap: 12px;
+    font-size: 14px;
+  }
 
-    main {
-        padding: 30px 15px;
-    }
+  main {
+    padding: 90px 15px 60px;
+  }
 
-    .card {
-        width: 90%;
-    }
+  .roster {
+    grid-template-columns: 1fr;
+  }
 }
+
