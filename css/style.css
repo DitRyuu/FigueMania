@@ -42,6 +42,9 @@ body {
     background-size: cover;
     background-position: center;
 }
+/* ==================== */
+/* 📄 Fond spécifique pour la page "Roster" */
+/* ==================== */
 #roster-page {
     background: url('../images/backgroundroster.png') no-repeat center center fixed;
     background-size: cover;
