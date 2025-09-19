@@ -2,97 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Roster</title>
+  <title>Roster des Catcheurs</title>
   <link rel="stylesheet" href="css/style.css">
   <script defer src="js/scripts.js"></script>
-</head>
-  <title>Roster des Catcheurs</title>
-  <style>
-    body 
-
-    /* HEADER */
-    header {
-      background-color: 4d004d;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    header h1 {
-      font-size: 22px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* ROSTER EN GRILLE */
-    main {
-      padding: 100px 20px 60px; /* espace header et footer */
-    }
-
-    .roster {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .catcheur {
-      background: rgba(0,0,0,0.8);
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .catcheur:hover {
-      transform: scale(1.05);
-    }
-
-    .catcheur img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .catcheur h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-    }
-
-    .catcheur p {
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #ccc;
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: 4d004d;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-    }
-  </style>
 </head>
 <body id="roster-page">
 
@@ -103,7 +15,7 @@
       <ul>
         <li><a href="index.html">Accueil</a></li>
         <li><a href="collection.html">Collection</a></li>
-        <li><a href="roster.html">Roster</a></li>
+        <li><a href="roster.html" class="active">Roster</a></li>
         <li><a href="recrutement.html">Recrutement</a></li>
         <li><a href="resultats.html">Résultats</a></li>
       </ul>
@@ -131,7 +43,7 @@
         <p>LFF EUROCONTINENTAL</p>
       </div>
 
-      <!-- Tu continues à ajouter les autres catcheurs ici -->
+      <!-- Autres catcheurs ici -->
     </div>
   </main>
 
@@ -141,5 +53,7 @@
   </footer>
 
 </body>
+</html>
+
 </html>
 
