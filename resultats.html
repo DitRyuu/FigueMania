@@ -20,6 +20,7 @@
       background: #007BFF; color: #fff; cursor: pointer;
     }
     button:hover { background: #0056b3; }
+    #championshipTitle { display: none; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -74,8 +75,27 @@
 
     <div class="roster-select">
       <label>
-        <input type="checkbox" id="championship"> Match de championnat
+        <input type="checkbox" id="championship" onchange="toggleTitleSelect()"> Match de championnat
       </label>
+    </div>
+
+    <!-- Liste des titres (affichée seulement si case cochée) -->
+    <div class="roster-select" id="championshipTitle">
+      <label for="title">Titre en jeu :</label>
+      <select id="title">
+        <option>LFF World Heavyweight Championship</option>
+        <option>LFF Championship</option>
+        <option>LFF World Women's Championship</option>
+        <option>LFF Women's Championship</option>
+        <option>LFF Rising Star Championship</option>
+        <option>LFF Eurocontinental Championship</option>
+        <option>LFF Women's Eurocontinental Championship</option>
+        <option>LFF WAR Tag Team Championship</option>
+        <option>LFF European Championship</option>
+        <option>LFF Women's European Championship</option>
+        <option>LFF GOLD Tag Team Championship</option>
+        <option>LFF Hardcore Championship</option>
+      </select>
     </div>
 
     <button onclick="publierResultat()">Publier le résultat</button>
@@ -108,4 +128,64 @@
 
       for (let i = 1; i <= nb; i++) {
         const div = document.createElement("div");
-        div.class
+        div.className = "roster-select";
+        div.innerHTML = `
+          <label for="catcheur${i}">Catcheur ${i} :</label>
+          <select id="catcheur${i}">
+            ${roster.map(name => `<option>${name}</option>`).join("")}
+          </select>
+          <select id="result${i}">
+            <option value="Victoire">Victoire</option>
+            <option value="Défaite">Défaite</option>
+            <option value="No contest">No contest</option>
+          </select>
+        `;
+        zone.appendChild(div);
+      }
+    }
+
+    // Afficher ou cacher la liste des titres
+    function toggleTitleSelect() {
+      const checked = document.getElementById("championship").checked;
+      document.getElementById("championshipTitle").style.display = checked ? "block" : "none";
+    }
+
+    // Publier un résultat
+    function publierResultat() {
+      const nb = parseInt(document.getElementById("participants").value);
+      const stip = document.getElementById("stipulation").value;
+      const championnat = document.getElementById("championship").checked;
+      const show = document.getElementById("show").value;
+
+      let texte = `[${show}] `;
+      for (let i = 1; i <= nb; i++) {
+        const catcheur = document.getElementById(`catcheur${i}`).value;
+        const result = document.getElementById(`result${i}`).value;
+        texte += `${catcheur} (${result}) `;
+        if (i < nb) texte += "vs ";
+      }
+      texte += `— ${stip}`;
+
+      if (championnat) {
+        const titre = document.getElementById("title").value;
+        texte += ` 🏆 ${titre}`;
+      }
+
+      afficherResultat(texte);
+
+      // Sauvegarde
+      const sauvegardes = JSON.parse(localStorage.getItem("resultats")) || [];
+      sauvegardes.push(texte);
+      localStorage.setItem("resultats", JSON.stringify(sauvegardes));
+    }
+
+    // Affichage du résultat
+    function afficherResultat(texte) {
+      const li = document.createElement("li");
+      li.textContent = texte;
+      document.getElementById("listeResultats").appendChild(li);
+    }
+  </script>
+
+</body>
+</html>
