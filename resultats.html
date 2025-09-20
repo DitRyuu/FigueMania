@@ -10,7 +10,7 @@
       margin: 20px; 
       background: url('https://example.com/votre-image.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #000; /* Police en noir */
+      color: #fff; 
     }
 
     /* Overlay léger pour améliorer le contraste */
@@ -26,7 +26,7 @@
 
     .match-card {
       background: rgba(255, 255, 255, 0.1); 
-      color: #000; /* Police en noir */
+      color: #fff;
       padding: 15px; 
       margin-bottom: 20px;
       border: 1px solid rgba(255,255,255,0.3); 
@@ -45,7 +45,7 @@
       border: none;
       padding: 4px 6px;
       background: rgba(255,255,255,0.2);
-      color: #000; /* Police en noir */
+      color: #fff;
     }
 
     .results { 
@@ -54,7 +54,6 @@
       background: rgba(0,128,0,0.3); 
       border: 1px solid rgba(255,255,255,0.3); 
       border-radius: 8px;
-      color: #000; /* Police en noir */
     }
 
     button {
@@ -63,7 +62,7 @@
       border: none; 
       border-radius: 6px;
       background: #ff9800; 
-      color: #000; /* Police en noir */
+      color: #fff; 
       cursor: pointer;
       box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
     }
@@ -110,7 +109,7 @@
 
     <div class="roster-select">
       <label for="stipulation">Stipulation :</label>
-      <select id="stipulation">
+      <select id="stipulation" onchange="gererTagMatch()">
         <option>Match simple</option>
         <option>Cage Match</option>
         <option>Table Match</option>
@@ -122,6 +121,9 @@
         <option>Battle Royal</option>
         <option>Triple Threat</option>
         <option>Fatal 4-Way</option>
+        <!-- ✅ Nouveaux matchs tag -->
+        <option>Tag Match (2 vs 2)</option>
+        <option>Tag Match (3 vs 3)</option>
       </select>
     </div>
 
@@ -273,6 +275,25 @@
       const li = document.createElement("li");
       li.textContent = texte;
       document.getElementById("listeResultats").appendChild(li);
+    }
+
+    // ✅ Fonction pour gérer les matchs par équipe
+    function gererTagMatch() {
+      const stip = document.getElementById("stipulation").value;
+      const participantsSelect = document.getElementById("participants");
+
+      if (stip === "Tag Match (2 vs 2)") {
+        participantsSelect.value = "4"; // 4 catcheurs
+      } else if (stip === "Tag Match (3 vs 3)") {
+        if (![...participantsSelect.options].some(opt => opt.value === "6")) {
+          const opt6 = document.createElement("option");
+          opt6.value = "6";
+          opt6.textContent = "6";
+          participantsSelect.appendChild(opt6);
+        }
+        participantsSelect.value = "6"; // 6 catcheurs
+      }
+      genererParticipants();
     }
   </script>
 
