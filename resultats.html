@@ -4,90 +4,74 @@
   <meta charset="UTF-8">
   <title>FigueMania - Résultats</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: url('f1d9de14-f05f-4c56-85c5-9404a895a957.png') no-repeat center center fixed;
+    /* Background avec image et overlay pour lisibilité */
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background: url('https://example.com/votre-image.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #f0f0f0;
+      color: #fff; 
     }
 
-    h1 {
-      text-align: center;
-      color: #fffcff;
-      text-shadow: 2px 2px 8px #6a0dad;
+    /* Overlay léger pour améliorer le contraste */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
     }
+
+    h1 { text-align: center; color: #ffeb3b; text-shadow: 2px 2px 4px #000; }
 
     .match-card {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(106, 13, 173, 0.7);
-    }
-
-    .roster-select {
-      margin: 10px 0;
-    }
-
-    label {
-      margin-right: 10px;
-      font-weight: bold;
-      color: #f0f0f0;
-    }
-
-    select, input[type="checkbox"] {
-      margin-left: 5px;
-      padding: 4px;
-      border-radius: 6px;
-      border: none;
-      outline: none;
-    }
-
-    select {
-      background: rgba(255, 255, 255, 0.9);
-      color: #000;
-    }
-
-    input[type="checkbox"] {
-      transform: scale(1.2);
-    }
-
-    .results {
-      margin-top: 30px;
-      padding: 15px;
-      background: rgba(106, 13, 173, 0.5);
-      border-radius: 12px;
-      border: 1px solid #bb86fc;
-    }
-
-    .results h3 {
+      background: rgba(255, 255, 255, 0.1); 
       color: #fff;
+      padding: 15px; 
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.3); 
+      border-radius: 8px;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+    }
+
+    .roster-select { margin: 10px 0; }
+
+    label { margin-right: 10px; font-weight: bold; color: #ffeb3b; }
+
+    select, input[type="checkbox"] { 
+      margin-left: 5px; 
+      border-radius: 4px;
+      border: none;
+      padding: 4px 6px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .results { 
+      margin-top: 30px; 
+      padding: 15px; 
+      background: rgba(0,128,0,0.3); 
+      border: 1px solid rgba(255,255,255,0.3); 
+      border-radius: 8px;
     }
 
     button {
-      margin-top: 10px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 8px;
-      background: #bb86fc;
-      color: #000;
+      margin-top: 10px; 
+      padding: 8px 16px; 
+      border: none; 
+      border-radius: 6px;
+      background: #ff9800; 
+      color: #fff; 
       cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 0 10px #bb86fc;
+      box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
     }
 
-    button:hover {
-      background: #9c4dcc;
-      color: #fff;
-      box-shadow: 0 0 15px #e0b3ff;
+    button:hover { 
+      background: #e65100; 
     }
 
-    #championshipTitle {
-      display: none;
-      margin-top: 10px;
-    }
+    #championshipTitle { display: none; margin-top: 10px; }
   </style>
 </head>
 <body>
@@ -146,7 +130,6 @@
       </label>
     </div>
 
-    <!-- Liste des titres (affichée seulement si case cochée) -->
     <div class="roster-select" id="championshipTitle">
       <label for="title">Titre en jeu :</label>
       <select id="title">
@@ -168,14 +151,128 @@
     <button onclick="publierResultat()">Publier le résultat</button>
   </div>
 
-  <!-- Zone d'affichage des résultats -->
   <div class="results" id="resultats">
     <h3>Résultats publiés :</h3>
     <ul id="listeResultats"></ul>
   </div>
 
   <script>
-    /* ... ton script JavaScript existant ici ... */
+    // ROSTER WAR
+    const rosterWar = {
+      masculins: [
+        "Adam Bailey", "Alex", "Alex \" The King \" White", "Angel", "Axel Smith",
+        "Bastien Del Varsovie", "Bray Wyatt", "Caleb Butler", "CJ Holloway",
+        "Dom Alvarez", "Dragon Fast", "Drew Rollins", "Edwards Dahmer", "Eric Steel",
+        "Ethan Cross", "Fozzy", "Harry Crushers", "Hiro Hendry", "Jack Oxley",
+        "Jackson Marcus", "Jonah Aku", "Justin Butler", "Kagami", "Kamron Neal",
+        "Kay Blade", "King Pemos", "Kuroko", "Léo Uso", "Leonardo Majestics",
+        "Lukas Tanos", "Luke", "Maeko Vaega", "Mathew Montana", "Matt Montana",
+        "Pegasus", "Phil Blackwell", "Tama Fangata", "Uncle Howdy", "Zina Fatu"
+      ],
+      feminins: [
+        "Alice Storm", "Anna Baker", "DR.Cassandra Vale", "Erza Jervis", "Kassy",
+        "Kelly Blaze", "Lilly Morgan", "Lucia Rodriguez", "Luna Winterwolf", "Makura",
+        "Naomi", "Reina", "Sasha Money", "Selina Babe", "Serena Dawn", "Zhara"
+      ],
+      tagTeams: [
+        "The Boom Squad",
+        "The Bullet Club (Adam Bailey/Eric Steel)",
+        "Empire of Pain (Maeko/Tama)",
+        "The Undispited Era (Caleb Butler / Justin Butler)",
+        "The Syndicate (Ethan Cross/Leonardo Majestics)"
+      ]
+    };
+
+    // ROSTER GOLD
+    const rosterGold = {
+      masculins: ["Gold Wrestler 1", "Gold Wrestler 2"],
+      feminins: ["Gold Diva 1", "Gold Diva 2"],
+      tagTeams: ["Gold Tag Team 1", "Gold Tag Team 2"]
+    };
+
+    window.onload = () => {
+      genererParticipants();
+      const sauvegardes = JSON.parse(localStorage.getItem("resultats")) || [];
+      sauvegardes.forEach(texte => afficherResultat(texte));
+    };
+
+    function genererParticipants() {
+      const zone = document.getElementById("participantsZone");
+      zone.innerHTML = "";
+      const nb = parseInt(document.getElementById("participants").value);
+
+      for (let i = 1; i <= nb; i++) {
+        const div = document.createElement("div");
+        div.className = "roster-select";
+        div.innerHTML = `
+          <label for="catcheur${i}">Catcheur ${i} :</label>
+          <select id="catcheur${i}">
+            <optgroup label="WAR Masculins">
+              ${rosterWar.masculins.map(name => `<option>${name}</option>`).join("")}
+            </optgroup>
+            <optgroup label="WAR Féminins">
+              ${rosterWar.feminins.map(name => `<option>${name}</option>`).join("")}
+            </optgroup>
+            <optgroup label="WAR Tag Team">
+              ${rosterWar.tagTeams.map(name => `<option>${name}</option>`).join("")}
+            </optgroup>
+            <optgroup label="GOLD Masculins">
+              ${rosterGold.masculins.map(name => `<option>${name}</option>`).join("")}
+            </optgroup>
+            <optgroup label="GOLD Féminins">
+              ${rosterGold.feminins.map(name => `<option>${name}</option>`).join("")}
+            </optgroup>
+            <optgroup label="GOLD Tag Team">
+              ${rosterGold.tagTeams.map(name => `<option>${name}</option>`).join("")}
+            </optgroup>
+          </select>
+          <select id="result${i}">
+            <option value="Victoire">Victoire</option>
+            <option value="Défaite">Défaite</option>
+            <option value="No contest">No contest</option>
+          </select>
+        `;
+        zone.appendChild(div);
+      }
+    }
+
+    function toggleTitleSelect() {
+      const checked = document.getElementById("championship").checked;
+      document.getElementById("championshipTitle").style.display = checked ? "block" : "none";
+    }
+
+    function publierResultat() {
+      const nb = parseInt(document.getElementById("participants").value);
+      const stip = document.getElementById("stipulation").value;
+      const championnat = document.getElementById("championship").checked;
+      const show = document.getElementById("show").value;
+
+      let texte = `[${show}] `;
+      for (let i = 1; i <= nb; i++) {
+        const catcheur = document.getElementById(`catcheur${i}`).value;
+        const result = document.getElementById(`result${i}`).value;
+        texte += `${catcheur} (${result}) `;
+        if (i < nb) texte += "vs ";
+      }
+      texte += `— ${stip}`;
+
+      if (championnat) {
+        const titre = document.getElementById("title").value;
+        texte += ` 🏆 ${titre}`;
+      }
+
+      afficherResultat(texte);
+
+      const sauvegardes = JSON.parse(localStorage.getItem("resultats")) || [];
+      sauvegardes.push(texte);
+      localStorage.setItem("resultats", JSON.stringify(sauvegardes));
+    }
+
+    function afficherResultat(texte) {
+      const li = document.createElement("li");
+      li.textContent = texte;
+      document.getElementById("listeResultats").appendChild(li);
+    }
   </script>
 
 </body>
