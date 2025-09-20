@@ -26,41 +26,34 @@
 
   <h1>Résultats des combats</h1>
 
+  <!-- Choix du show -->
+  <div class="match-card">
+    <label for="show">Show :</label>
+    <select id="show">
+      <option>LFF WAR</option>
+      <option>LFF GOLD</option>
+      <option>LFF BRAWLOUT</option>
+      <option>LFF WRESTLEKICK</option>
+      <option>LFF ANNIVERSARY</option>
+      <option>LFF THRONEBREAKER</option>
+      <option>LFF ROAD TO GLORY</option>
+    </select>
+  </div>
+
   <!-- Carte du match -->
   <div class="match-card">
-    <h2>Match 1</h2>
+    <h2>Match</h2>
 
     <div class="roster-select">
-      <label for="catcheur1">Catcheur 1 :</label>
-      <select id="catcheur1">
-        <option>Dupont Claire</option>
-        <option>Martin Hugo</option>
-        <option>Nguyen Lin</option>
-        <option>Moreau Lea</option>
-        <option>Garcia Omar</option>
-      </select>
-      <select id="result1">
-        <option value="Victoire">Victoire</option>
-        <option value="Défaite">Défaite</option>
-        <option value="No contest">No contest</option>
+      <label for="participants">Nombre de participants :</label>
+      <select id="participants" onchange="genererParticipants()">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
       </select>
     </div>
 
-    <div class="roster-select">
-      <label for="catcheur2">Catcheur 2 :</label>
-      <select id="catcheur2">
-        <option>Dupont Claire</option>
-        <option>Martin Hugo</option>
-        <option>Nguyen Lin</option>
-        <option>Moreau Lea</option>
-        <option>Garcia Omar</option>
-      </select>
-      <select id="result2">
-        <option value="Victoire">Victoire</option>
-        <option value="Défaite">Défaite</option>
-        <option value="No contest">No contest</option>
-      </select>
-    </div>
+    <div id="participantsZone"></div>
 
     <div class="roster-select">
       <label for="stipulation">Stipulation :</label>
@@ -73,6 +66,9 @@
         <option>Last Man Standing</option>
         <option>Falls Count Anywhere</option>
         <option>Iron Man Match</option>
+        <option>Battle Royal</option>
+        <option>Triple Threat</option>
+        <option>Fatal 4-Way</option>
       </select>
     </div>
 
@@ -92,21 +88,24 @@
   </div>
 
   <script>
-    function publierResultat() {
-      const catcheur1 = document.getElementById('catcheur1').value;
-      const result1 = document.getElementById('result1').value;
-      const catcheur2 = document.getElementById('catcheur2').value;
-      const result2 = document.getElementById('result2').value;
-      const stip = document.getElementById('stipulation').value;
-      const championnat = document.getElementById('championship').checked ? " (Match de championnat)" : "";
+    const roster = [
+      "Dupont Claire", "Martin Hugo", "Nguyen Lin",
+      "Moreau Lea", "Garcia Omar", "Petit Louis", "Roux Emma"
+    ];
 
-      const texte = `${catcheur1} (${result1}) vs ${catcheur2} (${result2}) — ${stip}${championnat}`;
+    // Charger résultats sauvegardés
+    window.onload = () => {
+      genererParticipants();
+      const sauvegardes = JSON.parse(localStorage.getItem("resultats")) || [];
+      sauvegardes.forEach(texte => afficherResultat(texte));
+    };
 
-      const li = document.createElement('li');
-      li.textContent = texte;
-      document.getElementById('listeResultats').appendChild(li);
-    }
-  </script>
+    // Générer la sélection des participants
+    function genererParticipants() {
+      const zone = document.getElementById("participantsZone");
+      zone.innerHTML = "";
+      const nb = parseInt(document.getElementById("participants").value);
 
-</body>
-</html>
+      for (let i = 1; i <= nb; i++) {
+        const div = document.createElement("div");
+        div.class
