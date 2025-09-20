@@ -10,13 +10,10 @@
   --header-height: 80px;
   --footer-height: 60px;
   --primary-color: #4d004d;
-  --secondary-color: #ffccff;
-  --card-bg: rgba(0, 0, 0, 0.85);
   --text-color: #333;
-  --text-light: #ccc;
 }
 
-/* ========== 🌐 Style global ========== */
+/* ========== 🌐 Style général commun ========== */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   min-height: 100vh;
@@ -25,9 +22,45 @@ body {
   padding-bottom: var(--footer-height);
   background: url('../images/background.png') no-repeat center center fixed;
   background-size: cover;
+  background-position: center;
 }
 
-/* ========== 📌 Header ========== */
+main {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+main h2 {
+  margin-bottom: 30px;
+  color: var(--primary-color);
+}
+
+/* ========== 📄 Fonds spécifiques par page ========== */
+#collection-page {
+  background: url('../images/9f738a60-8205-4438-8f57-6f983da65240.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+#roster-page {
+  background: url('../images/backgroundroster.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+#recrutement-page {
+  background: url('../images/backgroundrecrutement.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+#resultats-page {
+  background: url('../images/backgroundresultats.png') no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ========== 📌 Header commun ========== */
 header {
   background-color: var(--primary-color);
   color: white;
@@ -43,9 +76,10 @@ header {
   z-index: 1000;
 }
 
+/* ✅ Logo réduit */
 .logo img {
-  height: 40px;
-  width: auto;
+  height: 40px; /* taille du logo */
+  width: auto; /* garde proportions */
   display: block;
 }
 
@@ -65,35 +99,59 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: var(--secondary-color);
+  color: #ffccff;
+}
+
+/* ========== 🃏 Galerie / Collection / Accueil ========== */
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-weight: bold;
+  color: var(--primary-color);
 }
 
 /* ========== 🧱 Roster ========== */
-main {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-main h2 {
-  margin-bottom: 30px;
-  color: var(--primary-color);
-  font-size: 2rem;
-}
-
 .roster {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ✅ réduit taille cartes */
+  grid-template-columns: repeat(3, 1fr); /* ✅ toujours 3 par ligne */
   gap: 20px;
   justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .catcheur {
-  background: var(--card-bg);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
   overflow: hidden;
   text-align: center;
   transition: transform 0.3s;
-  max-width: 220px; /* ✅ réduit largeur */
+  width: 200px;   /* ✅ largeur fixe réduite */
 }
 
 .catcheur:hover {
@@ -102,21 +160,21 @@ main h2 {
 
 .catcheur img {
   width: 100%;
-  height: auto;
+  height: 240px; /* ✅ taille réduite */
   object-fit: contain;
-  max-height: 280px; /* ✅ réduit hauteur */
+  display: block;
 }
 
 .catcheur h3 {
   margin: 10px 0 5px;
-  font-size: 1rem;
+  font-size: 18px;
   color: white;
 }
 
 .catcheur p {
   margin-bottom: 10px;
-  font-size: 0.85rem;
-  color: var(--text-light);
+  font-size: 14px;
+  color: #ccc;
 }
 
 /* ========== 🦶 Footer ========== */
@@ -136,10 +194,10 @@ footer {
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* ========== 📱 Responsive ========== */
+/* ========== 📱 Responsive Design ========== */
 @media (max-width: 900px) {
   .roster {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* ✅ 2 colonnes tablette */
   }
 }
 
@@ -150,7 +208,7 @@ footer {
   }
 
   .logo img {
-    height: 30px;
+    height: 30px; /* logo encore plus petit sur mobile */
   }
 
   nav ul {
@@ -163,6 +221,15 @@ footer {
   }
 
   .roster {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* ✅ 1 colonne mobile */
+  }
+
+  .catcheur {
+    width: 80%; /* ✅ fluide sur mobile */
+  }
+
+  .card {
+    width: 90%;
   }
 }
+
