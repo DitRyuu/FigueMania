@@ -4,56 +4,87 @@
   <meta charset="UTF-8">
   <title>FigueMania - Résultats</title>
   <style>
-    /* Background avec image et overlay pour lisibilité */
-    body { 
+    /* Style global sans background */
+    html, body { 
       font-family: Arial, sans-serif; 
-      margin: 20px; 
-      background: url('https://example.com/votre-image.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff; 
+      margin: 0; 
+      padding: 0; 
+      color: #d500f9; /* Violet néon */
+      background: none;
     }
 
-    /* Overlay léger pour améliorer le contraste */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: -1;
+    h1 { 
+      text-align: center; 
+      margin-top: 20px;
+      color: #d500f9; 
+      text-shadow: 0 0 8px #ba00c7, 0 0 12px #ff00ff; 
     }
 
-    h1 { text-align: center; color: #ffeb3b; text-shadow: 2px 2px 4px #000; }
+    /* Barre de navigation */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      background: rgba(213,0,249,0.15);
+      box-shadow: 0 0 12px rgba(213,0,249,0.7);
+      border-bottom: 1px solid rgba(213,0,249,0.4);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #d500f9;
+      font-weight: bold;
+      font-size: 18px;
+      text-shadow: 0 0 8px #ff00ff;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 12px #ff00ff, 0 0 20px #ff33ff;
+    }
 
     .match-card {
-      background: rgba(255, 255, 255, 0.1); 
-      color: #fff;
+      background: rgba(255, 255, 255, 0.05); 
+      color: #d500f9;
       padding: 15px; 
-      margin-bottom: 20px;
-      border: 1px solid rgba(255,255,255,0.3); 
+      margin: 20px;
+      border: 1px solid rgba(213,0,249,0.5); 
       border-radius: 8px;
-      box-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+      box-shadow: 0 0 12px rgba(213,0,249,0.7);
       backdrop-filter: blur(6px);
     }
 
     .roster-select { margin: 10px 0; }
 
-    label { margin-right: 10px; font-weight: bold; color: #ffeb3b; }
+    label { 
+      margin-right: 10px; 
+      font-weight: bold; 
+      color: #d500f9; 
+      text-shadow: 0 0 6px #ff00ff;
+    }
 
     select, input[type="checkbox"] { 
       margin-left: 5px; 
       border-radius: 4px;
       border: none;
       padding: 4px 6px;
-      background: rgba(255,255,255,0.2);
-      color: #fff;
+      background: rgba(255,255,255,0.1);
+      color: #d500f9;
+      text-shadow: 0 0 6px #ff00ff;
     }
 
     .results { 
-      margin-top: 30px; 
+      margin: 20px; 
       padding: 15px; 
-      background: rgba(0,128,0,0.3); 
-      border: 1px solid rgba(255,255,255,0.3); 
+      background: rgba(213,0,249,0.1); 
+      border: 1px solid rgba(213,0,249,0.5); 
       border-radius: 8px;
+      box-shadow: 0 0 8px rgba(213,0,249,0.7);
     }
 
     button {
@@ -61,20 +92,30 @@
       padding: 8px 16px; 
       border: none; 
       border-radius: 6px;
-      background: #ff9800; 
+      background: #d500f9; 
       color: #fff; 
       cursor: pointer;
-      box-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 0 8px #ff00ff;
+      transition: 0.2s;
     }
 
     button:hover { 
-      background: #e65100; 
+      background: #ba00c7; 
+      box-shadow: 0 0 12px #ff00ff;
     }
 
     #championshipTitle { display: none; margin-top: 10px; }
   </style>
 </head>
 <body>
+
+  <!-- ✅ Barre de navigation -->
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="collection.html">Collection</a>
+    <a href="roster.html">Roster</a>
+    <a href="recrutement.html">Recrutement</a>
+  </nav>
 
   <h1>Résultats des combats</h1>
 
@@ -121,7 +162,6 @@
         <option>Battle Royal</option>
         <option>Triple Threat</option>
         <option>Fatal 4-Way</option>
-        <!-- ✅ Nouveaux matchs tag -->
         <option>Tag Match (2 vs 2)</option>
         <option>Tag Match (3 vs 3)</option>
       </select>
