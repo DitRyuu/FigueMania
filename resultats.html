@@ -57,8 +57,9 @@
             <!-- Les résultats seront injectés ici -->
         </section>
 
-        <h3>Résultats en texte</h3>
-        <textarea id="resultsText" class="results-text" readonly></textarea>
+        <h3>Résultats en texte (modifiable)</h3>
+        <textarea id="resultsText" class="results-text"></textarea>
+        <button id="publishText">Publier les résultats</button>
 
         <aside>
             <h3>Résumé</h3>
@@ -95,7 +96,7 @@
         function render(list = results) {
             list = list.slice().sort((a,b)=> sortDesc ? b.score - a.score : a.score - b.score);
             resultsEl.innerHTML = '';
-            let textOutput = "Résultats des combats\n\n";
+            let textOutput = "";
 
             list.forEach(item => {
                 const node = document.createElement('div');
@@ -127,6 +128,7 @@
             }
         }
 
+        // Appliquer les filtres
         document.getElementById('search').addEventListener('input', applyFilters);
         document.getElementById('filter').addEventListener('change', applyFilters);
 
@@ -142,9 +144,30 @@
             render(results);
         }
 
+        // Trier
         document.getElementById('toggleSort').addEventListener('click', ()=>{
             sortDesc = !sortDesc;
             document.getElementById('toggleSort').textContent = 'Trier : ' + (sortDesc ? 'décroissant' : 'croissant');
+            render(results);
+        });
+
+        // Publier les résultats saisis dans la zone texte
+        document.getElementById('publishText').addEventListener('click', ()=>{
+            const lines = resultsTextEl.value.trim().split("\n");
+            let newResults = [];
+
+            lines.forEach((line, i) => {
+                const parts = line.split("|").map(p => p.trim());
+                if(parts.length >= 4){
+                    const name = parts[0];
+                    const group = parts[1].replace("Groupe","").trim();
+                    const score = parseInt(parts[2].replace("Score:","").trim()) || 0;
+                    const note = parts[3];
+                    newResults.push({id:i+1, name, group, score, note});
+                }
+            });
+
+            results = newResults;
             render(results);
         });
 
@@ -152,4 +175,3 @@
     </script>
 </body>
 </html>
-
