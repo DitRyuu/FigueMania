@@ -21,6 +21,7 @@
         aside .summary {display: flex; flex-direction: column; gap: 8px;}
         aside .stat {display: flex; justify-content: space-between; padding: 8px;
                      border: 1px solid #ddd; border-radius: 6px; background: #f2f2f2;}
+        textarea.results-text {width: 100%; height: 200px; margin-top: 20px; padding: 10px; font-family: monospace;}
     </style>
 </head>
 <body>
@@ -56,6 +57,9 @@
             <!-- Les résultats seront injectés ici -->
         </section>
 
+        <h3>Résultats en texte</h3>
+        <textarea id="resultsText" class="results-text" readonly></textarea>
+
         <aside>
             <h3>Résumé</h3>
             <div class="summary">
@@ -83,6 +87,7 @@
         let sortDesc = true;
 
         const resultsEl = document.getElementById('results');
+        const resultsTextEl = document.getElementById('resultsText');
         const countEl = document.getElementById('count');
         const bestEl = document.getElementById('best');
         const avgEl = document.getElementById('avg');
@@ -90,6 +95,8 @@
         function render(list = results) {
             list = list.slice().sort((a,b)=> sortDesc ? b.score - a.score : a.score - b.score);
             resultsEl.innerHTML = '';
+            let textOutput = "Résultats des combats\n\n";
+
             list.forEach(item => {
                 const node = document.createElement('div');
                 node.className = 'result';
@@ -102,7 +109,12 @@
                     <div class="score">${item.score}</div>
                 `;
                 resultsEl.appendChild(node);
+
+                // Génération du texte
+                textOutput += `${item.name} | Groupe ${item.group} | Score: ${item.score} | ${item.note}\n`;
             });
+
+            resultsTextEl.value = textOutput;
 
             countEl.textContent = list.length;
             if(list.length > 0){
