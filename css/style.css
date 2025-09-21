@@ -55,7 +55,7 @@ main h2 {
 }
 
 #resultats-page {
-  background: url('images/backgroundresultat.png') no-repeat center center fixed;
+  background: url('../images/backgroundresultat.png') no-repeat center center fixed;
   background-size: cover;
   background-position: center;
 }
