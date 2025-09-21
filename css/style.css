@@ -9,8 +9,8 @@
 :root {
   --header-height: 80px;
   --footer-height: 60px;
-  --primary-color: #4d004d;
-  --text-color: #333;
+  --primary-color: #1B0642; /* Changer la couleur principale en #1B0642 */
+  --text-color: #1B0642; /* Changer la couleur du texte */
 }
 
 /* ========== 🌐 Style général commun ========== */
@@ -125,111 +125,5 @@ nav ul li a.active {
 
 .card img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-/* ========== 🧱 Roster ========== */
-.roster {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* ✅ toujours 3 par ligne */
-  gap: 20px;
-  justify-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.catcheur {
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s;
-  width: 200px;   /* ✅ largeur fixe réduite */
-}
-
-.catcheur:hover {
-  transform: scale(1.05);
-}
-
-.catcheur img {
-  width: 100%;
-  height: 240px; /* ✅ taille réduite */
-  object-fit: contain;
-  display: block;
-}
-
-.catcheur h3 {
-  margin: 10px 0 5px;
-  font-size: 18px;
-  color: white;
-}
-
-.catcheur p {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #ccc;
-}
-
-/* ========== 🦶 Footer ========== */
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: var(--footer-height);
-  background-color: var(--primary-color);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 900;
-  font-size: 14px;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
-}
-
-/* ========== 📱 Responsive Design ========== */
-@media (max-width: 900px) {
-  .roster {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 colonnes tablette */
-  }
-}
-
-@media (max-width: 600px) {
-  :root {
-    --header-height: 70px;
-    --footer-height: 56px;
-  }
-
-  .logo img {
-    height: 30px; /* logo encore plus petit sur mobile */
-  }
-
-  nav ul {
-    gap: 12px;
-    font-size: 14px;
-  }
-
-  main {
-    padding: 90px 15px 60px;
-  }
-
-  .roster {
-    grid-template-columns: 1fr; /* ✅ 1 colonne mobile */
-  }
-
-  .catcheur {
-    width: 80%; /* ✅ fluide sur mobile */
-  }
-
-  .card {
-    width: 90%;
-  }
-}
+  height:
 
