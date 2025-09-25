@@ -106,17 +106,18 @@ nav ul li a.active {
 .gallery {
   display: flex;
   justify-content: center;
-  gap: 20px; /* réduit l’espace entre les cartes */
+  gap: 25px; /* espace entre cartes */
   flex-wrap: wrap;
 }
 
 .card {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 15px; /* un peu moins que 20px */
+  padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* ombre plus discrète */
-  width: 180px; /* réduit la largeur (avant 220px) */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  width: 200px; /* réduit légèrement (au lieu de 220px) */
   transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
 }
 
 .card:hover {
@@ -132,14 +133,13 @@ nav ul li a.active {
 
 .card h3 {
   margin-top: 10px;
-  font-size: 1rem; /* taille réduite */
+  font-size: 1rem;
   font-weight: bold;
   color: var(--primary-color);
 }
 
 .card p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #333;
   margin-top: 5px;
 }
-
