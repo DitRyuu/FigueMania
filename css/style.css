@@ -102,27 +102,25 @@ nav ul li a.active {
   color: #ffccff;
 }
 
-/* ========== 🃏 Galerie / Collection / Accueil ========== */
+/* ========== 🃏 Galerie / Collection ========== */
 .gallery {
   display: flex;
   justify-content: center;
-  gap: 25px; /* espace entre cartes */
+  gap: 30px;
   flex-wrap: wrap;
 }
 
 .card {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  width: 200px; /* réduit légèrement (au lieu de 220px) */
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  transition: transform 0.2s;
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .card img {
@@ -142,4 +140,62 @@ nav ul li a.active {
   font-size: 0.9rem;
   color: #333;
   margin-top: 5px;
+}
+
+/* ========== 🧑‍🤼 Roster (3 par ligne) ========== */
+.roster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 par ligne */
+  gap: 25px;
+  justify-items: center;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.catcheur {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 280px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.catcheur:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.catcheur img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.catcheur h3 {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.catcheur p {
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* ========== 📌 Footer commun ========== */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  line-height: var(--footer-height);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--footer-height);
 }
