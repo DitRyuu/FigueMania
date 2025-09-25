@@ -31,8 +31,30 @@ main {
 }
 
 main h2 {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  font-size: 2.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   color: var(--primary-color);
+
+  /* Contour blanc effet glow */
+  text-shadow: 
+    -2px -2px 0 #fff,
+     2px -2px 0 #fff,
+    -2px  2px 0 #fff,
+     2px  2px 0 #fff,
+     0 0 8px #fff;
+}
+
+/* Barre décorative sous le titre */
+.title-bar {
+  width: 120px;
+  height: 5px;
+  background-color: white;
+  margin: 0 auto 30px auto;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #fff;
 }
 
 /* ========== 📄 Fonds spécifiques par page ========== */
