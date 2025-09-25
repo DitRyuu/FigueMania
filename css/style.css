@@ -106,24 +106,40 @@ nav ul li a.active {
 .gallery {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 20px; /* réduit l’espace entre les cartes */
   flex-wrap: wrap;
 }
 
 .card {
   background-color: rgba(255, 255, 255, 0.95);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 220px;
-  transition: transform 0.2s;
+  padding: 15px; /* un peu moins que 20px */
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* ombre plus discrète */
+  width: 180px; /* réduit la largeur (avant 220px) */
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
   transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
 .card img {
   width: 100%;
-  height:
+  height: auto;
+  border-radius: 8px;
+}
+
+.card h3 {
+  margin-top: 10px;
+  font-size: 1rem; /* taille réduite */
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.card p {
+  font-size: 0.85rem;
+  color: #333;
+  margin-top: 5px;
+}
 
