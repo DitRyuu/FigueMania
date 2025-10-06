@@ -138,7 +138,7 @@ nav ul li a.active {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   width: 220px;
-  transition: transform 0.2s;
+  transition: transform 0.2s, opacity 0.3s;
 }
 
 .card:hover {
@@ -221,3 +221,30 @@ footer {
   width: 100%;
   height: var(--footer-height);
 }
+
+/* ========== ⚔️ Ajouts : Boutons et Logo Collection ========== */
+.collection-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+/* Boutons latéraux */
+.collection-button {
+  position: absolute;
+  top: 100px;
+  width: 260px;
+  height: 160px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
