@@ -20,14 +20,33 @@
   </header>
 
   <main>
-    <section class="gallery">
-      <div class="card">
-        <img src="images/cartes/GM_D.R.png" alt="Carte GM Daemon Raze">
-        <p>Daemon Raze</p>
+    <section class="collection-container">
+
+      <!-- Bouton gauche (WAR) -->
+      <div class="collection-button left" data-type="war">
+        <span>Voir les cartes WAR</span>
       </div>
-      <div class="card">
-        <img src="images/cartes/GM_Crabil.png" alt="Carte GM Crabil">
-        <p>GM Crabil</p>
+
+      <!-- Logo central -->
+      <div class="collection-logo">
+        <img src="images/logo_central.png" alt="Logo Catch Universe">
+      </div>
+
+      <!-- Bouton droit (GOLD) -->
+      <div class="collection-button right" data-type="gold">
+        <span>Voir les cartes GOLD</span>
+      </div>
+
+      <!-- Galerie de cartes -->
+      <div class="gallery">
+        <div class="card" data-type="war">
+          <img src="images/cartes/GM_D.R.png" alt="Carte GM Daemon Raze">
+          <p>Daemon Raze</p>
+        </div>
+        <div class="card" data-type="gold">
+          <img src="images/cartes/GM_Crabil.png" alt="Carte GM Crabil">
+          <p>GM Crabil</p>
+        </div>
       </div>
     </section>
   </main>
@@ -35,6 +54,26 @@
   <footer>
     <p>© 2025 Catch Universe</p>
   </footer>
+
+  <!-- ✅ Script pour filtrer les cartes -->
+  <script>
+    const buttons = document.querySelectorAll('.collection-button');
+    const cards = document.querySelectorAll('.card');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const type = button.dataset.type;
+
+        cards.forEach(card => {
+          if (card.dataset.type === type) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
 
