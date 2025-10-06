@@ -44,7 +44,7 @@
 
         <!-- Galerie (ton contenu original de la gallery est conservé ici) -->
         <div class="gallery">
-          <div class="card" data-type="war">
+          <div class="card gm-daemon" data-type="war">
             <img src="images/cartes/GM_D.R.png" alt="Carte GM Daemon Raze">
             <p>Daemon Raze</p>
           </div>
@@ -91,6 +91,10 @@
         button.addEventListener('click', () => {
           const type = button.dataset.type;
           filter(type);
+          if(type === "war") {
+            const daemonCard = document.querySelector('.card.gm-daemon');
+            daemonCard.classList.add('show'); // Apparition de la carte GM Daemon
+          }
         });
         // clavier (Enter / Space)
         button.addEventListener('keydown', e => {
@@ -98,6 +102,10 @@
             e.preventDefault();
             const type = button.dataset.type;
             filter(type);
+            if(type === "war") {
+              const daemonCard = document.querySelector('.card.gm-daemon');
+              daemonCard.classList.add('show'); // Apparition de la carte GM Daemon
+            }
           }
         });
       });
@@ -113,5 +121,6 @@
   </script>
 </body>
 </html>
+
 
 
