@@ -20,34 +20,48 @@
   </header>
 
   <main>
+    <!-- CONTENU ORIGINAL / + NOUVEAUX AJOUTS -->
     <section class="collection-container">
 
-      <!-- Bouton gauche (WAR) -->
-      <div class="collection-button left" data-type="war">
-        <span>Voir les cartes WAR</span>
-      </div>
+      <!-- wrapper centré qui contient les cartes + boutons positionnés par rapport à lui -->
+      <div class="cards-wrap">
 
-      <!-- Logo central -->
-      <div class="collection-logo">
-        <img src="images/logo_central.png" alt="Logo Catch Universe">
-      </div>
-
-      <!-- Bouton droit (GOLD) -->
-      <div class="collection-button right" data-type="gold">
-        <span>Voir les cartes GOLD</span>
-      </div>
-
-      <!-- Galerie de cartes -->
-      <div class="gallery">
-        <div class="card" data-type="war">
-          <img src="images/cartes/GM_D.R.png" alt="Carte GM Daemon Raze">
-          <p>Daemon Raze</p>
+        <!-- Bouton gauche (WAR) -->
+        <div class="collection-button left" data-type="war" role="button" tabindex="0">
+          <span>Voir les cartes WAR</span>
         </div>
-        <div class="card" data-type="gold">
-          <img src="images/cartes/GM_Crabil.png" alt="Carte GM Crabil">
-          <p>GM Crabil</p>
+
+        <!-- Logo central (rond) -->
+        <div class="collection-logo" aria-hidden="true">
+          <!-- Remplace src par le chemin de ton logo (ex: images/1baeab7d-3e5f...png) -->
+          <img src="images/logo_central.png" alt="Logo Catch Universe">
         </div>
+
+        <!-- Bouton droit (GOLD) -->
+        <div class="collection-button right" data-type="gold" role="button" tabindex="0">
+          <span>Voir les cartes GOLD</span>
+        </div>
+
+        <!-- Galerie (ton contenu original de la gallery est conservé ici) -->
+        <div class="gallery">
+          <div class="card" data-type="war">
+            <img src="images/cartes/GM_D.R.png" alt="Carte GM Daemon Raze">
+            <p>Daemon Raze</p>
+          </div>
+          <div class="card" data-type="gold">
+            <img src="images/cartes/GM_Crabil.png" alt="Carte GM Crabil">
+            <p>GM Crabil</p>
+          </div>
+          <!-- Si tu as d'autres cartes, laisse-les ici (respecte data-type="war" ou "gold") -->
+        </div> <!-- .gallery -->
+
+      </div> <!-- .cards-wrap -->
+
+      <!-- Bouton central "Tout afficher" -->
+      <div class="show-all-wrap">
+        <button class="show-all" type="button">Tout afficher</button>
       </div>
+
     </section>
   </main>
 
@@ -55,25 +69,49 @@
     <p>© 2025 Catch Universe</p>
   </footer>
 
-  <!-- ✅ Script pour filtrer les cartes -->
+  <!-- JS pour le filtrage + accessibilité clavier -->
   <script>
-    const buttons = document.querySelectorAll('.collection-button');
-    const cards = document.querySelectorAll('.card');
+    (function(){
+      const buttons = document.querySelectorAll('.collection-button');
+      const cards = document.querySelectorAll('.card');
+      const showAllBtn = document.querySelector('.show-all');
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const type = button.dataset.type;
-
+      function filter(type) {
         cards.forEach(card => {
-          if (card.dataset.type === type) {
+          if (!type || card.dataset.type === type) {
             card.classList.remove('hidden');
           } else {
             card.classList.add('hidden');
           }
         });
+      }
+
+      // clic souris
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          const type = button.dataset.type;
+          filter(type);
+        });
+        // clavier (Enter / Space)
+        button.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const type = button.dataset.type;
+            filter(type);
+          }
+        });
       });
-    });
+
+      // Bouton "Tout afficher"
+      if (showAllBtn) {
+        showAllBtn.addEventListener('click', () => filter(null));
+      }
+
+      // Au chargement, on montre tout (sécurité)
+      window.addEventListener('load', () => filter(null));
+    })();
   </script>
 </body>
 </html>
+
 
