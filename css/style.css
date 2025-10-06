@@ -222,29 +222,165 @@ footer {
   height: var(--footer-height);
 }
 
-/* ========== ⚔️ Ajouts : Boutons et Logo Collection ========== */
-.collection-container {
+/* ========== ⚔️ Ajouts : Boutons, Logo central & positionnement précis ========== */
+
+/* wrapper qui centre exactement les cartes (permet un positionnement fiable des rectangles) */
+.cards-wrap {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 40px;
+  width: 560px; /* largeur fixe adaptée pour 2 cartes (2 * 220 + gap) */
+  margin: 40px auto 0 auto; /* centré horizontalement */
+  padding-bottom: 40px;
 }
 
-/* Boutons latéraux */
+/* Ajuste la gallery pour qu'elle tienne dans la cards-wrap */
+.cards-wrap .gallery {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: nowrap; /* on veut que les cartes restent sur la même ligne */
+}
+
+/* Buttons (rectangles blancs) positionnés par rapport à cards-wrap */
 .collection-button {
   position: absolute;
-  top: 100px;
+  top: -30px;              /* ajuste la hauteur pour laisser le logo centré */
   width: 260px;
   height: 160px;
-  background-color: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1.05rem;
   color: var(--primary-color);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
   cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+  text-transform: uppercase;
+  z-index: 4;
+  text-align: center;
+  padding: 8px;
+  line-height: 1.1;
+}
+
+/* LEFT : à gauche du wrapper */
+.collection-button.left {
+  left: -340px; /* position horizontal : ajuste si besoin */
+}
+
+/* RIGHT : à droite du wrapper */
+.collection-button.right {
+  left: calc(100% + 80px); /* place à droite de cards-wrap */
+}
+
+/* Hover / focus */
+.collection-button:hover,
+.collection-button:focus {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  outline: none;
+}
+
+/* petit effet de brillance animé (optionnel) */
+.collection-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: linear-gradient(120deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.14) 50%, rgba(255,255,255,0.0) 100%);
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+  pointer-events: none;
+}
+.collection-button:hover::after { transform: translateX(120%); }
+
+/* Logo central rond (superposé au-dessus des cartes) */
+.collection-logo {
+  position: absolute;
+  top: -140px; /* ajuste verticalement pour placer le rond au-dessus/entre les cartes */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  z-index: 6;
+}
+
+.collection-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* bouton "Tout afficher" sous la cards-wrap */
+.show-all-wrap {
+  margin-top: 220px; /* pousse sous la galerie (ajuste si nécessaire) */
+  text-align: center;
+}
+.show-all {
+  background: rgba(255,255,255,0.95);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--primary-color);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.show-all:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+/* Apparition fluide quand on filtre */
+.card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+  transition: transform 0.2s ease, opacity 0.25s ease;
+}
+
+/* === Responsive : repositionne les rectangles et logo sur petits écrans === */
+@media (max-width: 1100px) {
+  .cards-wrap {
+    width: 480px;
+  }
+  .collection-button.left { left: -260px; }
+  .collection-button.right { left: calc(100% + 40px); }
+  .collection-logo { top: -120px; width: 140px; height: 140px; }
+  .show-all-wrap { margin-top: 200px; }
+}
+
+@media (max-width: 800px) {
+  /* Sur mobile on empile : boutons au-dessus et sous les cartes pour éviter débordement */
+  .cards-wrap {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .cards-wrap .gallery { gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .collection-button.left,
+  .collection-button.right {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+  }
+  .collection-logo {
+    position: relative;
+    top: 0;
+    transform: none;
+    margin: 8px auto;
+    width: 100px;
+    height: 100px;
+  }
+  .show-all-wrap { margin-top: 18px; }
+}
