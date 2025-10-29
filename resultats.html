@@ -2,342 +2,48 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>FigueMania - Résultats</title>
+  <title>Résultats - FigueMania</title>
   <style>
-    /* Style global sans background */
-    html, body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      padding: 0; 
-      color: #1B0642; /* Remplacer le violet par #1B0642 */
-      background: none;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at center, #140014 0%, #000010 100%);
+      color: white;
+      overflow-x: hidden;
     }
 
-    h1 { 
-      text-align: center; 
-      margin-top: 20px;
-      color: #1B0642; 
-      text-shadow: 0 0 8px #1B0642, 0 0 12px #1B0642; /* Adapté à #1B0642 */
+    header {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 2em;
+      color: #ff73ff;
+      text-shadow: 0 0 10px #ff73ff, 0 0 20px #c700ff;
     }
 
-    /* Barre de navigation */
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px;
-      background: rgba(27, 6, 66, 0.15); /* Fond modifié en nuance de #1B0642 */
-      box-shadow: 0 0 12px rgba(27, 6, 66, 0.7); /* Ombre ajustée */
-      border-bottom: 1px solid rgba(27, 6, 66, 0.4); /* Bordure ajustée */
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    /* Conteneur du diaporama */
+    .slideshow-container {
+      position: relative;
+      max-width: 90%;
+      margin: 40px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px #c700ff;
     }
 
-    nav a {
-      text-decoration: none;
-      color: #1B0642; /* Remplacer le rose par #1B0642 */
-      font-weight: bold;
-      font-size: 18px;
-      text-shadow: 0 0 8px #1B0642;
-      transition: 0.3s;
+    /* Images du diaporama */
+    .slide {
+      display: none;
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      border-radius: 12px;
+      animation: fade 2s;
     }
 
-    nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 12px #1B0642, 0 0 20px #ff33ff;
+    /* Animation fondu entre les images */
+    @keyframes fade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
     }
 
-    .match-card {
-      background: rgba(255, 255, 255, 0.05); 
-      color: #1B0642;
-      padding: 15px; 
-      margin: 20px;
-      border: 1px solid rgba(27,6,66,0.5); /* Bordure adaptée */
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(27,6,66,0.7); /* Ombre modifiée */
-      backdrop-filter: blur(6px);
-    }
-
-    .roster-select { margin: 10px 0; }
-
-    label { 
-      margin-right: 10px; 
-      font-weight: bold; 
-      color: #1B0642; 
-      text-shadow: 0 0 6px #1B0642;
-    }
-
-    select, input[type="checkbox"] { 
-      margin-left: 5px; 
-      border-radius: 4px;
-      border: none;
-      padding: 4px 6px;
-      background: rgba(255,255,255,0.1);
-      color: #1B0642;
-      text-shadow: 0 0 6px #1B0642;
-    }
-
-    .results { 
-      margin: 20px; 
-      padding: 15px; 
-      background: rgba(27,6,66,0.1); 
-      border: 1px solid rgba(27,6,66,0.5); 
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(27,6,66,0.7);
-    }
-
-    button {
-      margin-top: 10px; 
-      padding: 8px 16px; 
-      border: none; 
-      border-radius: 6px;
-      background: #1B0642; 
-      color: #fff; 
-      cursor: pointer;
-      box-shadow: 0 0 8px #ff00ff;
-      transition: 0.2s;
-    }
-
-    button:hover { 
-      background: #1B0642; 
-      box-shadow: 0 0 12px #ff00ff;
-    }
-
-    #championshipTitle { display: none; margin-top: 10px; }
-  </style>
-</head>
-<body id="resultats-page">
-
-  <!-- ✅ Barre de navigation -->
-  <nav>
-    <a href="index.html">Accueil</a>
-    <a href="collection.html">Collection</a>
-    <a href="roster.html">Roster</a>
-    <a href="recrutement.html">Recrutement</a>
-  </nav>
-
-  <h1>Résultats des combats</h1>
-
-  <!-- Choix du show -->
-  <div class="match-card">
-    <label for="show">Show :</label>
-    <select id="show">
-      <option>LFF WAR</option>
-      <option>LFF GOLD</option>
-      <option>LFF BRAWLOUT</option>
-      <option>LFF WRESTLEKICK</option>
-      <option>LFF ANNIVERSARY</option>
-      <option>LFF THRONEBREAKER</option>
-      <option>LFF ROAD TO GLORY</option>
-    </select>
-  </div>
-
-  <!-- Carte du match -->
-  <div class="match-card">
-    <h2>Match</h2>
-
-    <div class="roster-select">
-      <label for="participants">Nombre de participants :</label>
-      <select id="participants" onchange="genererParticipants()">
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-    </div>
-
-    <div id="participantsZone"></div>
-
-    <div class="roster-select">
-      <label for="stipulation">Stipulation :</label>
-      <select id="stipulation" onchange="gererTagMatch()">
-        <option>Match simple</option>
-        <option>Cage Match</option>
-        <option>Table Match</option>
-        <option>Ladder Match</option>
-        <option>No Disqualification</option>
-        <option>Last Man Standing</option>
-        <option>Falls Count Anywhere</option>
-        <option>Iron Man Match</option>
-        <option>Battle Royal</option>
-        <option>Triple Threat</option>
-        <option>Fatal 4-Way</option>
-        <option>Tag Match (2 vs 2)</option>
-        <option>Tag Match (3 vs 3)</option>
-      </select>
-    </div>
-
-    <div class="roster-select">
-      <label>
-        <input type="checkbox" id="championship" onchange="toggleTitleSelect()"> Match de championnat
-      </label>
-    </div>
-
-    <div class="roster-select" id="championshipTitle">
-      <label for="title">Titre en jeu :</label>
-      <select id="title">
-        <option>LFF World Heavyweight Championship</option>
-        <option>LFF Championship</option>
-        <option>LFF World Women's Championship</option>
-        <option>LFF Women's Championship</option>
-        <option>LFF Rising Star Championship</option>
-        <option>LFF Eurocontinental Championship</option>
-        <option>LFF Women's Eurocontinental Championship</option>
-        <option>LFF WAR Tag Team Championship</option>
-        <option>LFF European Championship</option>
-        <option>LFF Women's European Championship</option>
-        <option>LFF GOLD Tag Team Championship</option>
-        <option>LFF Hardcore Championship</option>
-      </select>
-    </div>
-
-    <button onclick="publierResultat()">Publier le résultat</button>
-  </div>
-
-  <div class="results" id="resultats">
-    <h3>Résultats publiés :</h3>
-    <ul id="listeResultats"></ul>
-  </div>
-
-  <script>
-    // ROSTER WAR
-    const rosterWar = {
-      masculins: [
-        "Adam Bailey", "Alex", "Alex \" The King \" White", "Angel", "Axel Smith",
-        "Bastien Del Varsovie", "Bray Wyatt", "Caleb Butler", "CJ Holloway",
-        "Dom Alvarez", "Dragon Fast", "Drew Rollins", "Edwards Dahmer", "Eric Steel",
-        "Ethan Cross", "Fozzy", "Harry Crushers", "Hiro Hendry", "Jack Oxley",
-        "Jackson Marcus", "Jonah Aku", "Justin Butler", "Kagami", "Kamron Neal",
-        "Kay Blade", "King Pemos", "Kuroko", "Léo Uso", "Leonardo Majestics",
-        "Lukas Tanos", "Luke", "Maeko Vaega", "Mathew Montana", "Matt Montana",
-        "Pegasus", "Phil Blackwell", "Tama Fangata", "Uncle Howdy", "Zina Fatu"
-      ],
-      feminins: [
-        "Alice Storm", "Anna Baker", "DR.Cassandra Vale", "Erza Jervis", "Kassy",
-        "Kelly Blaze", "Lilly Morgan", "Lucia Rodriguez", "Luna Winterwolf", "Makura",
-        "Naomi", "Reina", "Sasha Money", "Selina Babe", "Serena Dawn", "Zhara"
-      ],
-      tagTeams: [
-        "The Boom Squad",
-        "The Bullet Club (Adam Bailey/Eric Steel)",
-        "Empire of Pain (Maeko/Tama)",
-        "The Undispited Era (Caleb Butler / Justin Butler)",
-        "The Syndicate (Ethan Cross/Leonardo Majestics)"
-      ]
-    };
-
-    // ROSTER GOLD
-    const rosterGold = {
-      masculins: ["Gold Wrestler 1", "Gold Wrestler 2"],
-      feminins: ["Gold Diva 1", "Gold Diva 2"],
-      tagTeams: ["Gold Tag Team 1", "Gold Tag Team 2"]
-    };
-
-    window.onload = () => {
-      genererParticipants();
-      const sauvegardes = JSON.parse(localStorage.getItem("resultats")) || [];
-      sauvegardes.forEach(texte => afficherResultat(texte));
-    };
-
-    function genererParticipants() {
-      const zone = document.getElementById("participantsZone");
-      zone.innerHTML = "";
-      const nb = parseInt(document.getElementById("participants").value);
-
-      for (let i = 1; i <= nb; i++) {
-        const div = document.createElement("div");
-        div.className = "roster-select";
-        div.innerHTML = `
-          <label for="catcheur${i}">Catcheur ${i} :</label>
-          <select id="catcheur${i}">
-            <optgroup label="WAR Masculins">
-              ${rosterWar.masculins.map(name => `<option>${name}</option>`).join("")}
-            </optgroup>
-            <optgroup label="WAR Féminins">
-              ${rosterWar.feminins.map(name => `<option>${name}</option>`).join("")}
-            </optgroup>
-            <optgroup label="WAR Tag Team">
-              ${rosterWar.tagTeams.map(name => `<option>${name}</option>`).join("")}
-            </optgroup>
-            <optgroup label="GOLD Masculins">
-              ${rosterGold.masculins.map(name => `<option>${name}</option>`).join("")}
-            </optgroup>
-            <optgroup label="GOLD Féminins">
-              ${rosterGold.feminins.map(name => `<option>${name}</option>`).join("")}
-            </optgroup>
-            <optgroup label="GOLD Tag Team">
-              ${rosterGold.tagTeams.map(name => `<option>${name}</option>`).join("")}
-            </optgroup>
-          </select>
-          <select id="result${i}">
-            <option value="Victoire">Victoire</option>
-            <option value="Défaite">Défaite</option>
-            <option value="No contest">No contest</option>
-          </select>
-        `;
-        zone.appendChild(div);
-      }
-    }
-
-    function toggleTitleSelect() {
-      const checked = document.getElementById("championship").checked;
-      document.getElementById("championshipTitle").style.display = checked ? "block" : "none";
-    }
-
-    function publierResultat() {
-      const nb = parseInt(document.getElementById("participants").value);
-      const stip = document.getElementById("stipulation").value;
-      const championnat = document.getElementById("championship").checked;
-      const show = document.getElementById("show").value;
-
-      let texte = `[${show}] `;
-      for (let i = 1; i <= nb; i++) {
-        const catcheur = document.getElementById(`catcheur${i}`).value;
-        const result = document.getElementById(`result${i}`).value;
-        texte += `${catcheur} (${result}) `;
-        if (i < nb) texte += "vs ";
-      }
-      texte += `— ${stip}`;
-
-      if (championnat) {
-        const titre = document.getElementById("title").value;
-        texte += ` 🏆 ${titre}`;
-      }
-
-      afficherResultat(texte);
-
-      const sauvegardes = JSON.parse(localStorage.getItem("resultats")) || [];
-      sauvegardes.push(texte);
-      localStorage.setItem("resultats", JSON.stringify(sauvegardes));
-    }
-
-    function afficherResultat(texte) {
-      const li = document.createElement("li");
-      li.textContent = texte;
-      document.getElementById("listeResultats").appendChild(li);
-    }
-
-    // ✅ Fonction pour gérer les matchs par équipe
-    function gererTagMatch() {
-      const stip = document.getElementById("stipulation").value;
-      const participantsSelect = document.getElementById("participants");
-
-      if (stip === "Tag Match (2 vs 2)") {
-        participantsSelect.value = "4"; // 4 catcheurs
-      } else if (stip === "Tag Match (3 vs 3)") {
-        if (![...participantsSelect.options].some(opt => opt.value === "6")) {
-          const opt6 = document.createElement("option");
-          opt6.value = "6";
-          opt6.textContent = "6";
-          participantsSelect.appendChild(opt6);
-        }
-        participantsSelect.value = "6"; // 6 catcheurs
-      }
-      genererParticipants();
-    }
-  </script>
-
-</body>
-</html>
-
-</html>
+    /* Boutons de na*
