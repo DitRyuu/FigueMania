@@ -2,48 +2,194 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Résultats - FigueMania</title>
+  <title>FigueMania - Résultats</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at center, #140014 0%, #000010 100%);
-      color: white;
+    /* Background avec image et overlay néon violet */
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background: url('/mnt/data/e4830024-5223-4227-971c-f922f2e03b4f.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0f0; 
       overflow-x: hidden;
     }
 
-    header {
-      text-align: center;
-      padding: 20px 0;
-      font-size: 2em;
-      color: #ff73ff;
-      text-shadow: 0 0 10px #ff73ff, 0 0 20px #c700ff;
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: -1;
     }
 
-    /* Conteneur du diaporama */
+    h1 { 
+      text-align: center; 
+      color: #ff73ff; 
+      text-shadow: 0 0 10px #ff73ff, 0 0 20px #c700ff, 0 0 30px #9c00ff; 
+    }
+
+    .match-card {
+      background: rgba(50,0,80,0.6); 
+      color: #fff;
+      padding: 15px; 
+      margin-bottom: 20px;
+      border: 1px solid #c700ff; 
+      border-radius: 12px;
+      box-shadow: 0 0 15px #9c00ff;
+      backdrop-filter: blur(6px);
+    }
+
+    .results { 
+      margin-top: 30px; 
+      padding: 15px; 
+      background: rgba(80,0,120,0.5); 
+      border: 1px solid #ff73ff; 
+      border-radius: 12px;
+      box-shadow: 0 0 15px #c700ff;
+    }
+
+    /* --- Diaporama --- */
     .slideshow-container {
       position: relative;
       max-width: 90%;
-      margin: 40px auto;
-      border-radius: 12px;
+      margin: 30px auto;
+      border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 0 20px #c700ff;
+      box-shadow: 0 0 25px #c700ff;
     }
 
-    /* Images du diaporama */
     .slide {
       display: none;
       width: 100%;
-      height: 550px;
+      height: 500px;
       object-fit: cover;
-      border-radius: 12px;
       animation: fade 2s;
     }
 
-    /* Animation fondu entre les images */
     @keyframes fade {
       from { opacity: 0.4; }
       to { opacity: 1; }
     }
 
-    /* Boutons de na*
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ff73ff;
+      font-weight: bold;
+      font-size: 30px;
+      padding: 16px;
+      cursor: pointer;
+      user-select: none;
+      background: rgba(0,0,0,0.3);
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .prev:hover, .next:hover {
+      background: rgba(255,115,255,0.4);
+      color: #fff;
+      box-shadow: 0 0 20px #ff73ff;
+    }
+
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #888;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.4s;
+      box-shadow: 0 0 6px #c700ff;
+    }
+
+    .active {
+      background-color: #ff73ff;
+      box-shadow: 0 0 10px #ff73ff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Résultats des combats</h1>
+
+  <!-- Diaporama -->
+  <div class="slideshow-container">
+    <img class="slide" src="https://picsum.photos/id/1011/1200/500" alt="Image 1">
+    <img class="slide" src="https://picsum.photos/id/1015/1200/500" alt="Image 2">
+    <img class="slide" src="https://picsum.photos/id/1018/1200/500" alt="Image 3">
+    <img class="slide" src="https://picsum.photos/id/1020/1200/500" alt="Image 4">
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+
+  <div class="dots">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+  </div>
+
+  <!-- Bloc principal conservé -->
+  <div class="match-card">
+    <label for="show">Show :</label>
+    <select id="show">
+      <option>LFF WAR</option>
+      <option>LFF GOLD</option>
+      <option>LFF BRAWLOUT</option>
+      <option>LFF WRESTLEKICK</option>
+      <option>LFF ANNIVERSARY</option>
+      <option>LFF THRONEBREAKER</option>
+      <option>LFF ROAD TO GLORY</option>
+    </select>
+  </div>
+
+  <div class="results" id="resultats">
+    <h3>Résultats publiés :</h3>
+    <ul id="listeResultats"></ul>
+  </div>
+
+  <script>
+    /* --- Script du diaporama --- */
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let slides = document.getElementsByClassName("slide");
+      let dots = document.getElementsByClassName("dot");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }    
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+      setTimeout(showSlides, 4000); // change toutes les 4s
+    }
+
+    function plusSlides(n) {
+      slideIndex += n - 1;
+      showSlides();
+    }
+
+    function currentSlide(n) {
+      slideIndex = n - 1;
+      showSlides();
+    }
+  </script>
+
+</body>
+</html>
