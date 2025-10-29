@@ -74,6 +74,45 @@ main h2 {
   background: url('../images/backgroundrecrutement.png') no-repeat center center fixed;
   background-size: cover;
   background-position: center;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  padding: 60px 20px;
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  padding: 40px 50px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+  animation: fadeIn 0.8s ease;
+}
+
+.form-container h2 {
+  color: var(--primary-color);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+.form-container p {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
 }
 
 #resultats-page {
@@ -225,3 +264,5 @@ nav ul li a.active {
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .show-all:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+
