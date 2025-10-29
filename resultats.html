@@ -26,33 +26,14 @@
       text-align: center; 
       color: #ff73ff; 
       text-shadow: 0 0 10px #ff73ff, 0 0 20px #c700ff, 0 0 30px #9c00ff; 
-    }
-
-    .match-card {
-      background: rgba(50,0,80,0.6); 
-      color: #fff;
-      padding: 15px; 
-      margin-bottom: 20px;
-      border: 1px solid #c700ff; 
-      border-radius: 12px;
-      box-shadow: 0 0 15px #9c00ff;
-      backdrop-filter: blur(6px);
-    }
-
-    .results { 
-      margin-top: 30px; 
-      padding: 15px; 
-      background: rgba(80,0,120,0.5); 
-      border: 1px solid #ff73ff; 
-      border-radius: 12px;
-      box-shadow: 0 0 15px #c700ff;
+      margin-bottom: 40px;
     }
 
     /* --- Diaporama --- */
     .slideshow-container {
       position: relative;
       max-width: 90%;
-      margin: 30px auto;
+      margin: 0 auto 40px auto;
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 0 25px #c700ff;
@@ -120,7 +101,7 @@
 </head>
 <body>
 
-  <h1>Résultats des combats</h1>
+  <h1>Résultats</h1>
 
   <!-- Diaporama -->
   <div class="slideshow-container">
@@ -138,15 +119,6 @@
     <span class="dot" onclick="currentSlide(2)"></span>
     <span class="dot" onclick="currentSlide(3)"></span>
     <span class="dot" onclick="currentSlide(4)"></span>
-  </div>
-
-  <!-- Section des résultats -->
-  <div class="results" id="resultats">
-    <h3>Résultats publiés :</h3>
-    <ul id="listeResultats">
-      <li>Exemple : Adam Bailey bat Luke — Match simple</li>
-      <li>Exemple : Serena Dawn bat Lucia Rodriguez — Ladder Match</li>
-    </ul>
   </div>
 
   <script>
